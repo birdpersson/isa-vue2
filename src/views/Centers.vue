@@ -5,13 +5,15 @@ export default {
   data() {
     return {
       centers: [],
+      fields: [
+        { key: "name", label: "Name", sortable: true },
+        { key: "city", label: "City", sortable: true },
+        { key: "address", label: "Address", sortable: true },
+        { key: "average", label: "Rating", sortable: true },
+      ],
     };
   },
-  methods: {
-    reserve: function (id) {
-      this.$router.push("/questionnaire/");
-    },
-  },
+  methods: {},
   created() {
     axios.get("http://localhost:8080/center/").then((Response) => {
       console.log(Response.data);
@@ -28,27 +30,21 @@ export default {
         <h4>Centers</h4>
       </div>
 
-      <table class="table">
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>City</th>
-            <th>Address</th>
-            <th>Rating</th>
-          </tr>
-        </thead>
+      <b-table
+        show-empty
+        stacked="md"
+        :items="centers"
+        :fields="fields"
+        sort-by="name"
+      >
         <tbody>
-          <tr :key="center.id" v-for="center in centers">
-            <td>{{ center.name }}</td>
-            <td>{{ center.city }}</td>
-            <td>{{ center.address }}</td>
-            <td>{{ center.average }}</td>
+          <tr>
             <td>
               <b-button @click="reserve(center.id)">Reserve</b-button>
             </td>
           </tr>
         </tbody>
-      </table>
+      </b-table>
     </div>
   </div>
 </template>
