@@ -4,6 +4,7 @@ import HomeView from '../views/HomeView.vue'
 import Signin from "../views/Signin.vue";
 import Signup from "../views/Signup.vue";
 import Centers from "../views/Centers.vue";
+import Questionnnaire from "../views/Questionnaire.vue";
 
 Vue.use(VueRouter)
 
@@ -27,6 +28,11 @@ const routes = [
     path: "/center/",
     name: "Centers",
     component: Centers
+  },
+  {
+    path: "/form/",
+    name: "Questionnaire",
+    component: Questionnnaire
   },
   {
     path: '/about',
